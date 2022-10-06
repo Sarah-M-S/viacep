@@ -1,0 +1,48 @@
+<mvc:View
+	controllerName="sap.ui.demo.basicTemplate.controller.Home"
+	displayBlock="true"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:form="sap.ui.layout.form">
+	<Page
+		id="page"
+		title="{i18n>title}">
+		<content>
+			<SearchField
+				search=".onSearch"
+				/>
+			<form:SimpleForm>
+				<Label
+					text="Rua"/>
+				<Input
+					id="rua"
+					value="{
+						path:'viacep>/logradouro',
+						formatter:'.formatLogradouro'
+					}"/>
+				<!-- <Input -->
+					<!-- value="{viacep>/logradouro}"/> -->
+				<Label
+					text="Estado"/>
+				<Input
+					id="estado"
+					value="{
+						model:'viacep',
+						path:'/uf', 
+					    formatter:'.formatUf'
+					}"/>
+			</form:SimpleForm>
+			<List
+				id="list" 
+				items="{log>/pesquisas}">
+				<items>
+					<DisplayListItem
+						value="{log>rua} - {log>estado}"
+						label="{model:'log',
+								path:'cep'}" 
+					/>
+				</items>
+			</List>
+		</content>
+	</Page>
+</mvc:View>
